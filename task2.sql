@@ -2,7 +2,7 @@
 create database task2
 
 --shifting to database
-use task2
+use sqltask2
 
 --creating the table
 create table employeetable
