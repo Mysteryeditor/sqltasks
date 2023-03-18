@@ -82,6 +82,7 @@ select (First_Name+space(1)+Last_name) as Complete_name from Worker
 
 -- Q-7. Write an SQL query to print details for Workers with the first name as “Vipul” and “Satish” from Worker table.
 select * from Worker where FIRST_NAME='Vipul' or FIRST_NAME='Satish'
+select * from Worker where FIRST_NAME in('vipul','satish')
 
 --Q-8. Write an SQL query to print details of Workers with DEPARTMENT name as “Admin”.
 select * from worker where department='admin'
@@ -90,7 +91,6 @@ select * from worker where department='admin'
 select * from Worker where FIRST_NAME like '%a'
 
 --Q-10. Write an SQL query to print details of the Workers whose FIRST_NAME contains ‘a’.
-
 select * from Worker where FIRST_NAME like '%a%'
 
 
