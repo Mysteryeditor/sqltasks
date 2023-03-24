@@ -76,10 +76,13 @@ select * from employee
 alter table employee add constraint default_const default '1001' for mid 
 
 
+
 --setting the on delete and on update functionality for the parent table
 alter table employee add foreign key(mid) references manager(id) on update set default on delete cascade
 
 
 --deleting a record from the parent table
-delete from manager where id='1003'
+delete from manager where id='1002'
+insert into employee values(2004,'srikanth',1005,'Angular')
+update manager set id=1007 where id=1005
 
