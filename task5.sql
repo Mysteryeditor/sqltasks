@@ -35,10 +35,23 @@ select coalesce(department,'all departments') as Department_Salary,sum(salary) a
 --5.Write an SQL query to retrieve first 3 records randomly.
 select top 3 * from Trainees order by NEWID()
 
+
 --6.Show the working of composite key with any example.
+create table bikes(id int primary key,company varchar(25) unique,model varchar(25))
 
 --7.Show the working of IIF and CASE for the above table.
-select FIRST_NAME,iif(SALARY>100000,'rich guy','poor guy') as social_status from Trainees 
+
+--iif
+select FIRST_NAME,iif(SALARY>100000,'rich guy','poor guy') as social_status from Trainees
+
+--case...when...then
+SELECT salary,department,
+CASE
+    WHEN salary > 100000 THEN 'not fresher'
+    ELSE 'fresher'
+END AS designation
+FROM Trainees;
+
 
 --8.Show the working of Sequence.
 create table cars(id int,model varchar(25))
@@ -51,14 +64,27 @@ increment by 1
 maxvalue 10
 
 select * from cars
+
+
 --9.Show the working of creation of Synonym for a table in DB1 from DB2.
 
-create synonym ts for trainees
 
-create synonym work for task4.dbo.worker
 
-use task4
-create synonym trainer for task5.cars
+
 --10.Show the working of IDENTITY_INSERT.
-use task5
-select * from trainer
+alter table cars drop column id
+
+--inserting a column with id as identity
+alter table cars add id int identity(1,1)
+
+--using the ident_insert
+set identity_insert cars on
+
+--inserting the value into cars using our own id
+insert into cars(id,model) values(8,'Murcilago')
+
+select * from cars
+
+set identity_insert cars off
+
+insert into cars(model) values('Mustang')
