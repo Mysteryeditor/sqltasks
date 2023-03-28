@@ -86,3 +86,4 @@ select * from sem1backup
 
 --updating the actual values
 update studentdetails set secured_marks=451 where studentid=3
+
