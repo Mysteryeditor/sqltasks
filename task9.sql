@@ -22,7 +22,7 @@ else
 print 'Invalid student name'
 end
 
-sp_search 'joseph'
+sp_search 'jose'
 
 --2.Write a stored procedure in sql to give remarks for the secured marks column in the student table using case statement
 create procedure sp_remarks
