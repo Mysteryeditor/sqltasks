@@ -23,12 +23,20 @@ insert into students values
 (1019,'Johny','MCOM',2024),
 (1020,'Kishan','MCA',2021)
 
+update students set yearofcompletion=2022 where yearofcompletion=2024 or yearofcompletion=2023
+
 --1. Show the working of PIVOT and UNPIVOT by creating a table students(sid,sname,department,yearofcompletion) with 20 recordsNote: Simplify the table to show the number of students in each department and categorize them based on yearofcompletion
-select yearofcompletion,BBA,BCA,MCOM,MCA,MBA from
-(select sid,dept,yearofcompletion from students) as table1
-pivot(
-count(sid) for dept in(BBA,BCA,MCOM,MCA,MBA)
-) as table2
+select dept, yearofcompletion, stu_count from (
+select dept, [2022],[2023],[2024],[2025] from 
+(select sid,dept,yearofcompletion from Students)
+as Table2
+pivot (count(sid) for [yearofcompletion] in ([2022],[2023],[2024],[2025]))
+as PTable2)P2
+unpivot
+(
+stu_count for [yearofcompletion] in ([2022],[2023],[2024],[2025])) 
+as UTable2
+
 
 --2.Library management DB
 create database library
