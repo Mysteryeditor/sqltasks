@@ -23,30 +23,66 @@ insert into students values
 (1019,'Johny','MCOM',2024),
 (1020,'Kishan','MCA',2021)
 
-update students set yearofcompletion=2022 where yearofcompletion=2024 or yearofcompletion=2023
 
 --1. Show the working of PIVOT and UNPIVOT by creating a table students(sid,sname,department,yearofcompletion) with 20 recordsNote: Simplify the table to show the number of students in each department and categorize them based on yearofcompletion
 select dept, yearofcompletion, stu_count from (
-select dept, [2022],[2023],[2024],[2025] from 
+select dept, [2019],[2020],[2021],[2022] from 
 (select sid,dept,yearofcompletion from Students)
 as Table2
-pivot (count(sid) for [yearofcompletion] in ([2022],[2023],[2024],[2025]))
+pivot (count(sid) for [yearofcompletion] in ([2019],[2020],[2021],[2022]))
 as PTable2)P2
 unpivot
 (
-stu_count for [yearofcompletion] in ([2022],[2023],[2024],[2025])) 
+stu_count for [yearofcompletion] in ([2019],[2020],[2021],[2022])) 
 as UTable2
 
 
 --2.Library management DB
 create database library
 
+use library
+
+--librarian table
 create table librarian(lib_id int primary key,lib_name varchar(20))
 
-create table books(bookid varchar(5) primary key,bookname varchar(15) unique,authorid int,publicationsid varchar(20) ,edition varchar(10),sectionid int)
+--authors table
+create table authors
+(authorid int primary key,
+authorname varchar(20) unique not null)
 
-create table authors(authorid int primary key,authorname varchar(20))
+--publications table
+create table publications
+(pid int primary key,
+pname varchar(25) unique not null)
 
-create table publications(pid int, pname varchar(25))
+--sections(category table)
+create table sections
+(sectionid int primary key,
+sname varchar(15) not null)
 
-create table sections(sectionid int primary key,sname varchar(15))
+--books table
+create table books(bookid varchar(5) primary key,
+bookname varchar(15) unique not null,
+authorid int references authors(authorid) on update cascade not null,
+publicationsid int references publications(pid) on update cascade not null ,
+edition varchar(10) not null,
+sectionid int references sections(sectionid) on update cascade not null)
+
+--for the students
+create table student(student_id varchar(6) primary key,
+student_name varchar(20)not null,
+dept varchar(20)not null)
+
+
+--lib_activities table
+create table lib_activities 
+(
+activity_id int primary key identity(1,1) ,
+student_id varchar(6) references student(student_id) on delete cascade,
+librarian_id int references librarian(lib_id) on delete set null on update cascade,
+book_id varchar(5) references books(bookid) on delete cascade on update cascade,
+bought_date datetime not null,
+due_date date not null,
+submitted_date date,
+fine smallmoney,
+)
