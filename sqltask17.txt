@@ -1,0 +1,257 @@
+Sql Task-17
+1.College:
+Table1:Students
+reg_no pk,
+sname,
+gender,
+dob,
+course_id,
+dept_id references dept(id),
+batch ,
+address,
+parent_id references parent(id)
+
+Table2:Department:
+dept_id pk ,
+dept_name,
+HOD_id
+
+Table3:Staff:
+Staff_id,
+Staff_name,
+Dept_id,
+Salary,
+email,
+qualification,
+teaching,
+
+Table5:Class:
+class_name pk,
+class_teacher id references staff-references(id)
+
+Table6:Attendance
+roll_no references student_details(roll_no),
+present_days,
+absent_days,
+total_days,
+attendance_percent
+
+Table7:Transport
+busno pk,
+driver_id ref staff(staff_id)
+
+
+
+2.School:
+Table1:Student_details
+Columns:
+Roll_no pk varchar,
+name varchar,
+class varchar references class(class_name),
+DOB,
+Parent_id references parents(id),
+address
+
+Table2:Staff_details
+Staff_id primary key,
+staff_name not null,
+salary,
+gender,
+qualification,
+department,
+email,
+address
+
+Table3:Class
+class_name pk,
+class_teacher id references staff-references(id)
+
+Table4:Attendance
+roll_no references student_details(roll_no),
+present_days,
+absent_days,
+total_days,
+attendance_percent
+
+Table5:Parents
+parents_id primary key,
+f_name,
+f_qua,
+f_occu,
+m_name,
+m_qua,
+m_occu,
+annual income
+
+
+3.Hospital
+table1:Patient_details
+Id,
+gender,
+age,
+case,
+guardian,
+bloogroup,
+admitted_datetime,
+discharge_datetime,
+Doctor_id,
+room_id,
+is deleted
+
+Table2:doctor
+doctor_id,
+dname,
+specialist,
+
+
+Table3:Nurses:
+nurse_id,
+shift
+
+
+Table4:Rooms
+room_id,
+floor,
+availability,
+
+Table5:Blood Bank
+bloodgroup pk,
+units_available
+
+Table6:Pharmacy
+drug_id,
+drug_name,
+price,
+mg
+
+
+3.Pet Clinic 
+table1:Patient_details:
+patient_id,
+patient_name,
+guardian_name,
+animal_id references animals(id),
+gender,
+doctor_id,
+case,
+date,
+date_discharged(nullable)
+
+table2:Animals:
+animal_id pk,
+animal_name,
+
+table3:Doctors:
+doc_id pk,
+qualification,
+doc_name,
+gender
+
+table4:Pharmacy:
+drug_id,
+drug_name,
+price,
+mg
+
+4.Children's Clinic
+table1:patients_details
+patient_id,
+patient_name,
+gender,
+age,
+parent/guardian,
+case,
+symptoms,
+invoice id fk,
+doc_id,
+isdeleted
+
+Table2:doctor
+dr_id pk,
+dr_name,
+gender,
+qualification
+
+table3:Pharmacy:
+drug_id,
+drug_name,
+price,
+mg
+
+table4:Equipments
+equipment_id pk,
+name,
+requested_date,
+daefected_date,
+
+table5:Invoice
+invoice id pk,
+patient_id fk,
+doctor_id,
+admitted date,
+discharge date,
+no:of days admitted,
+medicine cost,
+surgeries,
+total.
+
+
+5.Mall
+
+
+
+
+
+
+
+6.Training Institution
+table1:trainee_details
+trainee_id pk,
+trainee_name,
+gender,
+dob,
+course_id,
+trainer_id
+batch ,
+address,(to be splitted)
+parent_id references parent(id)
+
+table2:parents
+parents_id primary key,
+f_name,
+f_qua,
+f_occu,
+m_name,
+m_qua,
+m_occu,
+annual income
+
+Table3:trainer_details
+trainer_id primary key,
+trainer_name not null,
+salary,
+gender,
+qualification,
+email,
+address
+
+
+
+
+
+E-commerce website
+E-banking website
+Sports Academy
+Theme Park
+E-learning website
+Restaurant
+IT Company
+Movie ticket website
+Travel agency website
+Gym management
+Car Rental management
+Job Portal
+Bus Booking management
+Real-estate management
+Crime-reporting management
+                                                                                                                                                         
